@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\PostRepository;
 
 class PostController extends Controller
 {
@@ -11,11 +15,23 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $postRepository;
+
+    public function __construct(PostRepository $postRepository){
+        $this->postRepository = $postRepository;
+
+    }
+
+
     public function index()
     {
-        $posts = DB::table('users')->leftjoin('posts', 'users.id', '=', 'posts.author')->paginate(10);
-        return view('home', ['posts' => $posts]);
+        //$posts = DB::table('users')->leftjoin('posts', 'users.id', '=', 'posts.author')->paginate(10);
+        $posts = $this->postRepository->getAll();
+        //$author = Auth::user();
+        return view('post.index', ['posts' => $posts]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

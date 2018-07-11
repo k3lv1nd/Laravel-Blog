@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
+use Validator;
+
 class HomeController extends Controller
 {
     /**
@@ -37,11 +39,27 @@ class HomeController extends Controller
     }
 
     public function createPost(Request $request){
+        // return $request->all();
+
+        $inputs=$request->all();
+        $validator=Validator::make($inputs,[
+            'title'=>'unique:posts|required',
+            'description'=>'required'
+        ]);
+        if ($validator->fails()) {
+            # code...
+            return redirect('/home')->withErrors($validator);
+        }
         $post = Post::create(array(
-            'title' => Input::get('title'),
-            'description' => Input::get('description'),
+            'title' => $request->title,
+            'description' => $request->description,
             'author' => Auth::user()->id
         ));
+        // $post = Post::create(array(
+        //     'title' => Input::get('title'),
+        //     'description' => Input::get('description'),
+        //     'author' => Auth::user()->id
+        // ));
         return redirect()->route('home')->with('success', 'Post has been successfully added!');
     }
     public function getPost($id){
