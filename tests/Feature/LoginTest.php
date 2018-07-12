@@ -21,7 +21,7 @@ class LoginTest extends TestCase
                 'password' => '31985695',
                 '_token' => csrf_token()
             ]);
-            $this->assertEquals(200, $response->getStatusCode());
+            $this->assertEquals(302, $response->getStatusCode());
             //$this->assertEquals('auth.login', $response->original->name());
         }
 

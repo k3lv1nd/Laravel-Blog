@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\User;
+use App\Post;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,11 +14,12 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testBlog()
     {
-       $user = new User();
-       $name= $user::find(1)->name;
-        $this->assertEquals('kelvin', $name);
+       $post = new Post();
+       $post1= $post::find(1);
+       dd($post1);
+        $this->assertEquals('kelvin', $post1->author);
     }
 
 
