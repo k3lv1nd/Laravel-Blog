@@ -57,7 +57,7 @@
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $post->title }}</td>
-                                <td>{{ $post->name }}</td>
+                                <td>{{ $post->user->name }}</td>
                                 <td>
                                     <a href="{{ route('post.detail', ['id' => $post->id]) }}">view more</a>
                                 </td>

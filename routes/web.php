@@ -15,11 +15,11 @@ Route::get('/', 'PostController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/author/post', 'HomeController@getPostForm')->name('post.form');
-Route::post('/author/post', 'HomeController@createPost')->name('post.form');
-Route::get('/author/post/detail/{id}', 'HomeController@getPost')->name('post.detail');
-Route::get('/author/post/edit/{id}', 'HomeController@editPost')->name('post.edit');
-Route::get('/author/post/edit/{id}', 'HomeController@updatePost')->name('post.update');
+Route::get('/home', 'PostController@getHomePosts')->name('home');
+Route::get('/author/post', 'PostController@getPostForm')->name('post.form');
+Route::post('/author/post', 'PostController@create')->name('post.form');
+Route::get('/author/post/detail/{id}', 'PostController@show')->name('post.detail');
+Route::get('/author/post/edit/{id}', 'PostController@edit')->name('post.edit');
+Route::post('/author/post/edit/{id}', 'HomeController@updatePost')->name('post.update');
 
 

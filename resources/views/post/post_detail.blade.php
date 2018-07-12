@@ -1,4 +1,6 @@
+@extends('layouts.master')
 @section('content')
+    <p>hello man</p>
     <div class="container-fluid">
         <div class="row">
             <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
@@ -18,7 +20,7 @@
                 <h1>{{ $post->title }}</h1>
                 <div class="col-sm-8 blog-main">
                     <p>{{ $post->description }}</p>
-                    <a href="#">
+                    <a href="{{ route('post.edit', ['id' => $post->id]) }}">
                         <button type="button" class="btn btn-primary btn-sm">Edit Post</button>
                     </a>
                   
